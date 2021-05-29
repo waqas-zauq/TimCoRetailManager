@@ -19,6 +19,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -27,28 +28,34 @@
                    FontSize="64" FontFamily="Segoe UI Light">
             Login Form
         </TextBlock>
-        
+        <!-- Error Message Row-->
+        <TextBlock x:Name="ErrorMessage"
+                   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                   TextWrapping="Wrap" Foreground="Red" MaxWidth="300" Margin="0 0 0 20"
+                   Visibility="{Binding IsErrorVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" 
+                   />
+
         <!-- Username Row -->
-        <TextBlock Grid.Row="1" Grid.Column="1"
-                   Margin="0 0 0 10">
+        <TextBlock Grid.Row="2" Grid.Column="1"
+                   Margin="0 0 5 10">
             Username:
         </TextBlock>
         <TextBox x:Name="UserName"
-                 Grid.Row="1" Grid.Column="2"
-                 MinWidth="150" Margin="0 0 0 10"/>
+                 Grid.Row="2" Grid.Column="2"
+                 MinWidth="350" Margin="0 0 0 10"/>
 
         <!-- Password Row -->
-        <TextBlock Grid.Row="2" Grid.Column="1"
-                   Margin="0 0 0 20">
+        <TextBlock Grid.Row="3" Grid.Column="1"
+                   Margin="0 0 5 20">
             Password:
         </TextBlock>
         <PasswordBox x:Name="Password"
-                 Grid.Row="2" Grid.Column="2"
-                 MinWidth="150" Margin="0 0 0 20"/>
-        
+                 Grid.Row="3" Grid.Column="2"
+                 MinWidth="350" Margin="0 0 0 20"/>
+
         <!-- Login Row -->
         <Button x:Name="LogIn"
-                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                 Padding="20 5" HorizontalAlignment="Center">
             Log In
         </Button>
