@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -18,11 +19,13 @@ namespace TRMApi.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _config;
 
-        public UserController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration config)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _config = config;
         }
 
         [HttpGet]
@@ -30,7 +33,7 @@ namespace TRMApi.Controllers
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            UserData data = new UserData();
+            UserData data = new UserData(_config);
 
             return data.GetUserById(userId).First();
         }
